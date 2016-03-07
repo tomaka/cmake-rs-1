@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Config` struct in crate `cmake`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Config">
+
+    <title>cmake::Config - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>cmake</a></p><script>window.sidebarCurrent = {name: 'Config', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>cmake</a>::<wbr><a class='struct' href=''>Config</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-12' class='srclink' href='../src/cmake/src/lib.rs.html.html#58-69' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Config {
+    // some fields omitted
+}</pre><div class='docblock'><p>Builder style configuration for a pending CMake build.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>&lt;P: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>&gt;&gt;(path: P) -&gt; <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Creates a new blank set of configuration to build the project specified
+at the path <code>path</code>.</p>
+</div><h4 id='method.cflag' class='method'><code>fn <a href='#method.cflag' class='fnname'>cflag</a>&lt;P: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html' title='std::ffi::os_str::OsStr'>OsStr</a>&gt;&gt;(&amp;mut self, flag: P) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Adds a custom flag to pass down to the compiler, supplementing those
+that this library already passes.</p>
+</div><h4 id='method.define' class='method'><code>fn <a href='#method.define' class='fnname'>define</a>&lt;K, V&gt;(&amp;mut self, k: K, v: V) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html' title='std::ffi::os_str::OsStr'>OsStr</a>&gt;, V: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html' title='std::ffi::os_str::OsStr'>OsStr</a>&gt;</span></code></h4>
+<div class='docblock'><p>Adds a new <code>-D</code> flag to pass to cmake during the generation step.</p>
+</div><h4 id='method.register_dep' class='method'><code>fn <a href='#method.register_dep' class='fnname'>register_dep</a>(&amp;mut self, dep: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Registers a dependency for this compilation on the native library built
+by Cargo previously.</p>
+
+<p>This registration will modify the <code>CMAKE_PREFIX_PATH</code> environment
+variable for the build system generation step.</p>
+</div><h4 id='method.target' class='method'><code>fn <a href='#method.target' class='fnname'>target</a>(&amp;mut self, target: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Sets the target triple for this compilation.</p>
+
+<p>This is automatically scraped from <code>$TARGET</code> which is set for Cargo
+build scripts so it&#39;s not necessary to call this from a build script.</p>
+</div><h4 id='method.host' class='method'><code>fn <a href='#method.host' class='fnname'>host</a>(&amp;mut self, host: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Sets the host triple for this compilation.</p>
+
+<p>This is automatically scraped from <code>$HOST</code> which is set for Cargo
+build scripts so it&#39;s not necessary to call this from a build script.</p>
+</div><h4 id='method.out_dir' class='method'><code>fn <a href='#method.out_dir' class='fnname'>out_dir</a>&lt;P: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>&gt;&gt;(&amp;mut self, out: P) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Sets the output directory for this compilation.</p>
+
+<p>This is automatically scraped from <code>$OUT_DIR</code> which is set for Cargo
+build scripts so it&#39;s not necessary to call this from a build script.</p>
+</div><h4 id='method.profile' class='method'><code>fn <a href='#method.profile' class='fnname'>profile</a>(&amp;mut self, profile: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Sets the profile for this compilation.</p>
+
+<p>This is automatically scraped from <code>$PROFILE</code> which is set for Cargo
+build scripts so it&#39;s not necessary to call this from a build script.</p>
+</div><h4 id='method.build_arg' class='method'><code>fn <a href='#method.build_arg' class='fnname'>build_arg</a>&lt;A: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html' title='std::ffi::os_str::OsStr'>OsStr</a>&gt;&gt;(&amp;mut self, arg: A) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Add an argument to the final <code>cmake</code> build step</p>
+</div><h4 id='method.build_target' class='method'><code>fn <a href='#method.build_target' class='fnname'>build_target</a>(&amp;mut self, target: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../cmake/struct.Config.html' title='cmake::Config'>Config</a></code></h4>
+<div class='docblock'><p>Sets the build target for the final <code>cmake</code> build step, this will
+default to &quot;install&quot; if not specified.</p>
+</div><h4 id='method.build' class='method'><code>fn <a href='#method.build' class='fnname'>build</a>(&amp;mut self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html' title='std::path::PathBuf'>PathBuf</a></code></h4>
+<div class='docblock'><p>Run this configuration, compiling the library with all the configured
+options.</p>
+
+<p>This will run both the build system generator command as well as the
+command to build the library.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "cmake";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
